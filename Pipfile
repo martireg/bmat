@@ -13,3 +13,6 @@ motor = "*"
 
 [requires]
 python_version = "3.8"
+
+[packages.fuzzywuzzy]
+extras = [ "speedup",]

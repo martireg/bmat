@@ -30,3 +30,6 @@ class WorkRepository:
     async def first(self, query: dict) -> Union[Work, None]:
         work = await self.db_client.bmat.works.find_one(query)
         return Work.from_dict(work) if work is not None else None
+
+    async def update(self, query: dict, parameters: dict) -> None:
+        await self.db_client.bmat.works.update(query, parameters)
