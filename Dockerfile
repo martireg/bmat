@@ -1,10 +1,14 @@
 FROM python:3.8
 
-COPY Pipfile.lock .
 RUN pip install pipenv
+COPY Pipfile.lock /tmp
+COPY Pipfile /tmp
+RUN cd /tmp && pipenv lock --requirements > requirements.txt
+RUN cat /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt
 
 ADD app app
 
 EXPOSE 5000
 
-CMD pipenv run python app/app.py
+CMD hypercorn app.main:app
