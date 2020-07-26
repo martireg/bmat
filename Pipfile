@@ -9,7 +9,7 @@ pylint = "*"
 pytest = "*"
 
 [packages]
-quart = "*"
+Quart = "*"
 motor = "*"
 
 [requires]

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "613c77c5907e32cdf4567623de1783255ed628f47bdc6262eed6727799b0399b"
+            "sha256": "b1cecd0dbde262bfe3da3f389f803ed91003642d99e5e59ca4cd424e3015cfea"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -200,7 +200,7 @@
             ],
             "version": "==3.10.1"
         },
-        "quart": {
+        "quartquart": {
             "hashes": [
                 "sha256:b0b5148ab57b775ed173ed9e9897f3b13d2f54e39cfadf4a396f442ec96bb57f",
                 "sha256:b2a8cf0cf1b0129cd981ece9ae304ad977d1dcaec92952303bd1852508717d44"
