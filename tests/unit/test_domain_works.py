@@ -12,9 +12,7 @@ class TestWorkDomain(TestCase):
 
     def test_work_from_dict(self):
         work = Work.from_dict(test_work)
-        self.assertAlmostEqual(
-            work.to_dict().get("iswc"), expected_work.get("iswc")
-        )
+        self.assertAlmostEqual(work.to_dict().get("iswc"), expected_work.get("iswc"))
 
     def test_work_to_dict(self):
         work = Work.from_dict(test_work)

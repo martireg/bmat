@@ -4,7 +4,7 @@ from typing import Optional, Union, List
 
 from motor.motor_asyncio import AsyncIOMotorClient
 
-from app.buisness_layers.domain import Work
+from app.business_layers.domain import Work
 
 
 class WorkRepository:
