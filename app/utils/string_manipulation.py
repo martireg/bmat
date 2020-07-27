@@ -1,4 +1,3 @@
-import logging
 import unicodedata
 
 from fuzzywuzzy import fuzz
@@ -39,7 +38,7 @@ def build_best_string(existing_string: str, inserting_string: str) -> str:
 
     if existing_token_number != inserting_token_number:
         return (
-            inserting_string
+            existing_string
             if existing_token_number > inserting_token_number
             else inserting_string
         )

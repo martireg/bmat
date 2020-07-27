@@ -5,9 +5,11 @@ COPY Pipfile.lock /tmp
 COPY Pipfile /tmp
 RUN cd /tmp && pipenv install --system --deploy
 
-ADD app app
-ADD tests tests
+ADD app /opt/app
+ADD tests /opt/tests
 
-EXPOSE 5000
+WORKDIR /opt
 
-CMD hypercorn app.main:app
+EXPOSE 80
+
+CMD uvicorn app.main:app --host 0.0.0.0 --port 80

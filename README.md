@@ -2,6 +2,6 @@ key things
 
 * Clean structure (simplified for the test).
 * ASYNC
-* quartz
+* ~~quartz~~ fast api
 * string checking
 * PIP lock

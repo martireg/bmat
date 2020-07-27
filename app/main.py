@@ -1,5 +1,3 @@
-from quart import Quart
+from fastapi import FastAPI
 
-app = Quart(__name__)
-
-app.run(host="0.0.0.0")
+app = FastAPI()
