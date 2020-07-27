@@ -101,7 +101,11 @@ async def insert_work_use_case(works_repo: WorkRepository, work: Dict) -> Work:
 async def bulk_upload_works_use_case(
     works_repo: WorkRepository, works: List[Dict],
 ) -> List[Work]:
-    return [await insert_work_use_case(works_repo, work) for work in works]
+    parsed_works = {}
+    for work in works:
+        parsed_work = await insert_work_use_case(works_repo, work)
+        parsed_works[parsed_work.iswc] = parsed_work
+    return [work for iswc, work in parsed_works.items() if iswc]
 
 
 async def list_works_use_case(work_repo: WorkRepository,) -> List[Work]:

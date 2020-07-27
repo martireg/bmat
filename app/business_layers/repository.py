@@ -1,4 +1,3 @@
-import json
 import logging
 from typing import Optional, Union, List
 
@@ -13,7 +12,7 @@ class WorkRepository:
 
     async def create(self, work: dict) -> Work:
         insert = await self.db_client.bmat.works.insert_one(work)
-        logging.debug(f"inserted work id: {insert.inserted_id}")
+        logging.debug("inserted work id: %", insert.inserted_id)
         return Work.from_dict(work)
 
     async def create_many(self, works: List[dict]) -> List[Work]:

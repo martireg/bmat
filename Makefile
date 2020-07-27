@@ -12,6 +12,14 @@ down:
 build:
 	docker-compose build
 
-local:
-	pipenv run python3 app/main.py
+start-local:
+	$(MAKE) install-dev
+	pipenv run uvicorn app.main:app --reload
 
+parse:
+	$(MAKE) install-dev
+	pipenv run mypy app || true
+	pipenv run pylint app || true
+
+install-dev:
+	pipenv install --dev

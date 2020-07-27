@@ -47,7 +47,7 @@ def build_best_string(existing_string: str, inserting_string: str) -> str:
     for existing, inserting in zip(existing_string_split, inserting_string_split):
         if normalize_string(existing) != normalize_string(inserting):
             raise MergeException("Tokens do not match")
-        elif existing == inserting:
+        if existing == inserting:
             best_string_tokens.append(existing)
         else:
             best_string_tokens.append(

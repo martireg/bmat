@@ -48,7 +48,6 @@ class TestWorkUseCases(IsolatedAsyncioTestCase):
         works = await use_cases.bulk_upload_works_use_case(
             repo, process_csv(test_work_csv)
         )
-        from pprint import pprint as print
 
-        print(repo.works)
-        self.assertTrue(works)
+        self.assertEqual(len(works), 4)
+        self.assertEqual(len(works[1].contributors), 4)
