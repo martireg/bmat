@@ -2,6 +2,7 @@ from unittest import IsolatedAsyncioTestCase
 
 from app.business_layers import use_cases
 from app.business_layers.domain import Work
+from app.utils.csv_manipulation import process_csv
 from tests.fixtures.dictionary_collection import test_work_csv
 
 
@@ -45,7 +46,7 @@ class TestWorkUseCases(IsolatedAsyncioTestCase):
 
         repo = MockRepo()
         works = await use_cases.bulk_upload_works_use_case(
-            repo, use_cases.process_csv(test_work_csv)
+            repo, process_csv(test_work_csv)
         )
         from pprint import pprint as print
 
