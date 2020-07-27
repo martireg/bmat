@@ -31,4 +31,4 @@ class WorkRepository:
         return Work.from_dict(work) if work is not None else None
 
     async def update(self, query: dict, parameters: dict) -> None:
-        await self.db_client.bmat.works.update(query, parameters)
+        await self.db_client.bmat.works.update_many(query, {"$set": parameters})

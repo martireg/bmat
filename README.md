@@ -15,9 +15,10 @@ This api aggregates, cleans and exposes metadata for musical work
 ### installation and launch
     
 ### Fastapi
+    
      fast api
      
-point to swagger
+point to swagger on /docs
 
 ### Clean architecture
     explain what it is, modifications made, and link some resources
