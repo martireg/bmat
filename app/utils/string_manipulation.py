@@ -32,36 +32,32 @@ def build_best_string(existing_string: str, inserting_string: str) -> str:
     Build best string comparing tokens
     :raise: MergeException if strings have same token number but one or more are different
     """
-    try:
-        inserting_string_split = inserting_string.split()
-        existing_string_split = existing_string.split()
-        if len(existing_string_split) < len(inserting_string_split):
-            best_string = inserting_string
-        elif len(existing_string_split) > len(inserting_string_split):
-            best_string = None
+    inserting_string_split = inserting_string.split()
+    existing_string_split = existing_string.split()
+    existing_token_number = len(existing_string_split)
+    inserting_token_number = len(inserting_string_split)
+
+    if existing_token_number != inserting_token_number:
+        return (
+            inserting_string
+            if existing_token_number > inserting_token_number
+            else inserting_string
+        )
+
+    best_string_tokens = []
+    for existing, inserting in zip(existing_string_split, inserting_string_split):
+        if normalize_string(existing) != normalize_string(inserting):
+            raise MergeException("Tokens do not match")
+        elif existing == inserting:
+            best_string_tokens.append(existing)
         else:
-            best_string_tokens = []
-            for existing, inserting in zip(
-                existing_string_split, inserting_string_split
-            ):
-                if normalize_string(existing) != normalize_string(inserting):
-                    raise MergeException("Tokens does not match")
-                elif existing == inserting:
-                    best_string_tokens.append(existing)
-                else:
-                    best_string_tokens.append(
-                        existing
-                        if evaluate_string_richness(existing)
-                        >= evaluate_string_richness(inserting)
-                        else inserting
-                    )
-            best_string = " ".join(best_string_tokens)
-            if best_string == inserting_string:
-                best_string = None
-    except MergeException as e:
-        logging.debug("Error building best title %s", e)
-        best_string = None
-    return best_string
+            best_string_tokens.append(
+                existing
+                if evaluate_string_richness(existing)
+                >= evaluate_string_richness(inserting)
+                else inserting
+            )
+    return " ".join(best_string_tokens)
 
 
 def is_similar(string1: str, string2: str, threshold: int = None) -> bool:

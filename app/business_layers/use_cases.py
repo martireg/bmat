@@ -2,6 +2,7 @@ from typing import List, Union, Dict
 
 from app.business_layers.domain import Work
 from app.business_layers.repository import WorkRepository
+from app.utils.exceptions import MergeException
 from app.utils.string_manipulation import build_best_string, is_similar
 
 
@@ -17,7 +18,13 @@ def merge_titles(existing_work: Work, inserting_work: Work) -> Union[str, None]:
     elif existing_work.title and not inserting_work.title:
         best_title = None
     else:
-        best_title = build_best_string(existing_work.title, inserting_work.title)
+        try:
+            best_title = build_best_string(existing_work.title, inserting_work.title)
+        except MergeException:
+            best_title = None
+        else:
+            if best_title == existing_work.title:
+                best_title = None
     return best_title
 
 
