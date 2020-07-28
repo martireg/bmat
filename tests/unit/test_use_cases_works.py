@@ -2,7 +2,7 @@ from unittest import IsolatedAsyncioTestCase
 
 from app.business_layers import use_cases
 from app.business_layers.domain import Work
-from app.utils.csv_manipulation import process_csv
+from app.utils.csv_manipulation import process_csv, create_csv
 from tests.fixtures.dictionary_collection import test_work_csv
 
 
@@ -48,6 +48,5 @@ class TestWorkUseCases(IsolatedAsyncioTestCase):
         works = await use_cases.bulk_upload_works_use_case(
             repo, process_csv(test_work_csv)
         )
-
         self.assertEqual(len(works), 4)
         self.assertEqual(len(works[1].contributors), 4)

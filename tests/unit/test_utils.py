@@ -43,3 +43,6 @@ class TestUtils(TestCase):
         self.assertEqual(
             string_manipulation.normalize_string("me enamoré",), "me enamore"
         )
+
+    def test_build_csv(self):
+        pass  # TODO

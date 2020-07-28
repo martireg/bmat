@@ -8,3 +8,7 @@ def process_csv(file: Union[IO, str, List[str], bytes]):
     if isinstance(file, str):
         file = file.splitlines()
     return csv.DictReader(file, delimiter=",", quotechar="|")
+
+
+def create_csv(data):
+    pass  #  TODO
