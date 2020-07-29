@@ -92,7 +92,7 @@ async def insert_work_use_case(works_repo: WorkRepository, work: Dict) -> Work:
         {"iswc": inserting_work.iswc}
     ) or await works_repo.first({"title": inserting_work.title})
 
-    if not existing_work:
+    if not existing_work or existing_work.iswc != inserting_work.iswc:
         return await works_repo.create(inserting_work.to_dict())
 
     return await update_existing_work(works_repo, inserting_work, existing_work,)
