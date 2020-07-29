@@ -34,6 +34,7 @@ Use `pipenv shell` for starting and entering a venv.
 
 All piece of software must come with it's own piece of test suite
 Be sure that all tests are passing  `make test` and `make test-local`
+Use `make lint` for code linting
 
 ## Use a Consistent Coding Style
 

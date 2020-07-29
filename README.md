@@ -70,8 +70,15 @@ The project uses this framework among other popular frameworks for it's integrat
 [MongoDB](https://www.mongodb.com/) is used in this project.
 
 Enter shell
+
+with make
 ```bash
 make mongo
+```
+
+manual
+```bash
+docker-compose run 
 ```
 
 ### More external projects used
@@ -79,9 +86,6 @@ make mongo
 [uvicorn](https://www.uvicorn.org/) For the ASGI server
 
 [Motor](https://motor.readthedocs.io/en/stable/)  For an asynchronous MongoDB driver
-
-
-
 
 
 ### Clean architecture

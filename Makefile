@@ -32,8 +32,11 @@ init:
 	docker volume create --name=mongodb_data
 	docker-compose build
 
-clean-volumes:
+remove-volumes:
 	docker volume rm mongodb_data
 
 mongo:
 	docker-compose exec db mongo
+
+start-as-deamon:
+	docker-compose up -d web_app

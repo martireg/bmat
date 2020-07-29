@@ -37,9 +37,7 @@ async def upload_csv(file: UploadFile = File(...), db=Depends(get_db)) -> List[D
 async def fetch_csv(db=Depends(get_db)) -> File:
     works = await list_works(db)
     if not works:
-        return HTTPException(
-            status_code=500, detail="There are no works available"
-        )
+        return HTTPException(status_code=500, detail="There are no works available")
     response = StreamingResponse(
         stream_csv_from_dicts(works, separator=",", keys=works[0].keys()),
         media_type="text/csv",

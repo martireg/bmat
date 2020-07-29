@@ -9,10 +9,10 @@ pylint = "*"
 black = "==19.10b0"
 
 [packages]
-motor = "*"
-fastapi = "*"
-uvicorn = "*"
-python-multipart = "*"
+motor = "==2.1.0"
+fastapi = "==0.60.1"
+uvicorn = "==0.11.7"
+python-multipart = "==0.0.5"
 
 [requires]
 python_version = "3.8"
