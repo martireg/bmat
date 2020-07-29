@@ -2,7 +2,7 @@
 
 This project aggregates, cleans and exposes metadata for musical works, to ensure high reliable and consistent information.
 
-It exposes to the user an an API and interactive swagger interface for API discover and uploading/downloading work spreadsheets.   
+It exposes to the user an API and an interactive swagger interface for API discover and uploading/downloading work spreadsheets.   
 
 ### Requirements
 
