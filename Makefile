@@ -26,9 +26,11 @@ lint:
 	pipenv run pylint app || true
 
 install-dev:
+	touch .env
 	pipenv install --dev
 
 init:
+	touch .env
 	docker volume create --name=mongodb_data
 	docker-compose build
 

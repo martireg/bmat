@@ -18,20 +18,20 @@ git clone https://github.com/martireg/bmat.git ~/MyFolder/bmat
 cd ~/MyFolder/bmat
 ```
 
-Create a [.env](#configuration) file
-
-```shell script
-touch .env
-```
-
-with make
+##### Automatic installation with make
     
 ```shell script
 make init
 make start-server
 ```
 
-manual
+##### manual installation
+
+Create a [.env](#configuration) file
+
+```shell script
+touch .env
+```
 
 ```shell script
 docker volume create --name=mongodb_data
