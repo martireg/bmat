@@ -13,21 +13,27 @@ It exposes to the user an API and an interactive swagger interface for API disco
 ### Installation and launch
 
 Clone/Download this repository and go to the root directory. Be aware, this project might be private until an agreement with the company making the test.  
-```bash
+```shell script
 git clone https://github.com/martireg/bmat.git ~/MyFolder/bmat
 cd ~/MyFolder/bmat
 ```
 
+Create a .env file (see configuration)
+
+```shell script
+touch .env
+```
+
 with make
     
-```bash
+```shell script
 make init
 make start-server
 ```
 
 manual
 
-```bash
+```shell script
 docker volume create --name=mongodb_data
 docker-compose build
 docker-compose up web_app
@@ -45,7 +51,7 @@ otherwise <your_domain>:5000/
 You can upload, download files and make requests from the swagger o via API requests
 
 **Example** Get all musical works from the API:
-```bash
+```shell script
 curl -X GET "http://localhost:5000/works" -H  "accept: application/json" 
 ``` 
 
@@ -72,12 +78,12 @@ The project uses this framework among other popular frameworks for it's integrat
 Enter shell
 
 with make
-```bash
+```shell script
 make mongo
 ```
 
 manual
-```bash
+```shell script
 docker-compose run 
 ```
 
@@ -111,7 +117,7 @@ All the requirements are managed with this tool and recorded automatically to th
 See [contributing file](CONTRIBUTING.md)
 
 default developing port is 8000
-```bash
+```shell script
 make start-local
 ```
 
