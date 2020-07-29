@@ -36,7 +36,7 @@ docker-compose up web_app
 ### Usage
 
 When the project is started the server is exposed on the port 5000,
-you check the swagger on the root for full list of endpoints. 
+you can check the swagger on the root for full list of endpoints. 
 
 eg. on local [localhost:5000/](http://localhost:5000/)
 
@@ -63,27 +63,45 @@ You can change the default threshold used to match similarity on names `SIMILARI
     
 [FastApi](https://fastapi.tiangolo.com/) is a modern python open source web Framework.
 
-The project uses this framework among other popular frameworks for it's integration with async, type hints and built-in Swagger documentation. 
+The project uses this framework among other popular frameworks for it's integration with async, type hints and built-in Swagger documentation.
+
+### Database
+
+[MongoDB](https://www.mongodb.com/) is used in this project.
+
+Enter shell
+```bash
+make mongo
+```
+
+### More external projects used
+
+[uvicorn](https://www.uvicorn.org/) For the ASGI server
+
+[Motor](https://motor.readthedocs.io/en/stable/)  For an asynchronous MongoDB driver
+
+
+
+
 
 ### Clean architecture
     
 Clean architecture is a Layer-based architecture aimed to make a decoupled, maintainable yet extensible application.
 
-Main domain logic is placed in [use_cases](app/business_layers/use_cases.py), and the API is built on the [presentation layer](app/business_layers/presentation.py) 
+Main domain logic is placed in [use_cases](app/business_layers/use_cases.py) and the API is built on the [presentation layer](app/business_layers/presentation.py) 
 
 This project uses clean architecture because it gives extra flexibility on the selection of frameworks used.
   
 [Online resource for quick overview](https://www.freecodecamp.org/news/a-quick-introduction-to-clean-architecture-990c014448d2/)
 
 
-### where is the requirements.txt?
+### Where is the requirements.txt?
 
 This project uses [pipenv](https://github.com/pypa/pipenv) for modern requirements management.
 
 All the requirements are managed with this tool and recorded automatically to the Pipenv and Pipenv.lock files.
 
 
-   
 ### Developing
 
 See [contributing file](CONTRIBUTING.md)
