@@ -18,7 +18,7 @@ git clone https://github.com/martireg/bmat.git ~/MyFolder/bmat
 cd ~/MyFolder/bmat
 ```
 
-Create a .env file (see configuration)
+Create a [.env](#configuration) file
 
 ```shell script
 touch .env
