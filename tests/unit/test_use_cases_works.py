@@ -2,7 +2,7 @@ from unittest import IsolatedAsyncioTestCase
 
 from app.business_layers import use_cases
 from app.business_layers.domain import Work
-from app.utils.csv_manipulation import process_csv, create_csv
+from app.utils.csv_manipulation import process_csv
 from tests.fixtures.dictionary_collection import test_work_csv
 
 

@@ -2,7 +2,7 @@ from typing import List, Dict
 
 from fastapi import APIRouter, UploadFile, File, Depends, HTTPException
 from pydantic import create_model
-from starlette.responses import StreamingResponse, Response
+from starlette.responses import StreamingResponse
 
 from app.business_layers.domain import Work
 from app.business_layers.repository import WorkRepository
@@ -12,7 +12,7 @@ from app.business_layers.use_cases import (
     list_works_use_case,
 )
 from app.db.mongodb import get_client
-from app.utils.csv_manipulation import process_csv, create_csv
+from app.utils.csv_manipulation import process_csv, stream_csv_from_dicts
 
 
 async def get_db():
@@ -22,8 +22,8 @@ async def get_db():
 work_router = APIRouter()
 
 # Model Fields are defined by either a tuple of the form (<type>, <default value>) or a default value
-annotations = {k: (v, ...) for k, v in Work.__annotations__.items()}
-WorkModel = create_model("WorkModel", **annotations)
+model_fields = {k: (v, ...) for k, v in Work.__annotations__.items()}
+WorkModel = create_model("WorkModel", **model_fields)
 
 
 @work_router.post("/upload_file", response_model=List[WorkModel])
@@ -36,7 +36,14 @@ async def upload_csv(file: UploadFile = File(...), db=Depends(get_db)) -> List[D
 @work_router.get("/download_file")
 async def download_csv(db=Depends(get_db)) -> File:
     works = await list_works(db)
-    response = Response(create_csv(works), media_type="text/csv")
+    if not works:
+        return HTTPException(
+            status_code=500, detail="Sorry there are no works available"
+        )
+    response = StreamingResponse(
+        stream_csv_from_dicts(works, separator=",", keys=works[0].keys()),
+        media_type="text/csv",
+    )
     response.headers["Content-Disposition"] = "attachment; filename=export.csv"
     return response
 

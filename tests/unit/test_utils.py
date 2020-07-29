@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from app.utils import string_manipulation
+from app.utils import string_manipulation, csv_manipulation
 
 
 class TestUtils(TestCase):
@@ -45,4 +45,22 @@ class TestUtils(TestCase):
         )
 
     def test_build_csv(self):
-        pass  # TODO
+        self.assertEqual(
+            [i for i in csv_manipulation.stream_csv_from_dicts([], [])], [b""]
+        )
+
+        csv = b"".join(
+            csv_manipulation.stream_csv_from_dicts(
+                [
+                    {"header1": "key1", "header2": None},
+                    {"header1": 3, "header2": ["key4", "key5"]},
+                ],
+                ["header1", "header2"],
+            )
+        )
+        expected = """header1,header2
+key1,
+3,key4|key5""".encode()
+        self.assertEqual(
+            csv, expected,
+        )

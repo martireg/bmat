@@ -16,10 +16,20 @@ start-local:
 	$(MAKE) install-dev
 	pipenv run uvicorn app.main:app --reload
 
-parse:
+lint:
 	$(MAKE) install-dev
 	pipenv run mypy app || true
 	pipenv run pylint app || true
 
 install-dev:
 	pipenv install --dev
+
+init:
+	docker volume create --name=mongodb_data
+	docler-compose build
+
+clean-volumes:
+	docker volume rm mongodb_data
+
+mongo:
+	docker-compose exec db mongo
