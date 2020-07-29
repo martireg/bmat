@@ -83,9 +83,9 @@ async def insert_work_use_case(works_repo: WorkRepository, work: Dict) -> Work:
         "iswc": work.get("iswc") or None,
         "source": work.get("source") or None,
         "id": int(ident)
-        if (ident := work.get("id", "").isdigit()) or isinstance(ident, int)
+        if ((ident := work.get("id", "")).isdigit()) or isinstance(ident, int)
         else None,
-    }  # FIXME id is always 1
+    }
     inserting_work = Work.from_dict(clean_work)
 
     existing_work = await works_repo.first(
