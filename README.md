@@ -25,7 +25,7 @@ make init
 make start-server
 ```
 
-##### manual installation
+##### Manual installation
 
 Create a [.env](#configuration) file
 
@@ -48,7 +48,7 @@ eg. on local [localhost:5000/](http://localhost:5000/)
 
 otherwise <your_domain>:5000/
 
-You can upload, download files and make requests from the swagger o via API requests
+You can upload, download files and make requests from the swagger or via API requests
 
 **Example** Get all musical works from the API:
 ```shell script
@@ -119,6 +119,12 @@ See [contributing file](CONTRIBUTING.md)
 default developing port is 8000
 ```shell script
 make start-local
+```
+
+Test suite with unittests is available
+```shell script
+make test
+make test-local
 ```
 
 Mock project made by Martí Regola.

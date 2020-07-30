@@ -7,16 +7,22 @@ from app.utils.string_manipulation import build_best_string, is_similar
 
 
 async def insert_work_use_case(works_repo: WorkRepository, work: Dict) -> Work:
+
+    contributors = work.get("contributors", [])
+    if isinstance(contributors, str):
+        contributors = contributors.split("|")
+
+    try:
+        ident = int(work.get("id"))
+    except (ValueError, TypeError):
+        ident = None
+
     clean_work = {
         "title": work.get("title", "").strip(),
-        "contributors": contributors
-        if isinstance((contributors := work.get("contributors", [])), list)
-        else contributors.split("|"),
+        "contributors": contributors,
         "iswc": work.get("iswc") or None,
         "source": work.get("source") or None,
-        "id": int(ident)
-        if ((ident := work.get("id", "")).isdigit()) or isinstance(ident, int)
-        else None,
+        "id": ident,
     }
     inserting_work = Work.from_dict(clean_work)
 
